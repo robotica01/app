@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyMate - App para estudiantes</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #f5f7ff;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    /* Intro */
+    .intro {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, #6c63ff, #8f85ff);
+      color: white;
+    }
+    .intro h1 {
+      font-size: 2.8em;
+      margin-bottom: 10px;
+    }
+    .intro p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+    .intro button {
+      padding: 12px 30px;
+      background: white;
+      color: #6c63ff;
+      border: none;
+      border-radius: 25px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .intro button:hover {
+      background: #eceaff;
+    }
+
+    /* Menú */
+    header {
+      background: #6c63ff;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 1.3em;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    nav {
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 15px 0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    nav a {
+      text-decoration: none;
+      color: #6c63ff;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #463ebf;
+    }
+
+    section {
+      display: none;
+      padding: 40px;
+      max-width: 900px;
+      margin: auto;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    h2 {
+      color: #6c63ff;
+      border-bottom: 3px solid #6c63ff;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    /* Tabla de tareas */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background: #e8e8ff;
+    }
+    input {
+      width: 95%;
+      padding: 6px;
+      border: 1px solid #bbb;
+      border-radius: 5px;
+    }
+
+    /* Apuntes bonitos */
+    .tips {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+    .tips ul {
+      list-style: none;
+      padding: 0;
+    }
+    .tips li::before {
+      content: "🌸 ";
+    }
+    .yt-links a {
+      display: block;
+      background: #e8e8ff;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      text-decoration: none;
+      color: #333;
+      transition: background 0.3s;
+    }
+    .yt-links a:hover {
+      background: #d4d0ff;
+    }
+
+    /* Videos */
+    .videos a {
+      display: block;
+      color: #333;
+      background: #e8e8ff;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .videos a:hover {
+      background: #d4d0ff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #6c63ff;
+      color: white;
+      font-size: 0.9em;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Intro -->
+  <div class="intro" id="intro">
+    <h1>📘 StudyMate</h1>
+    <p>Tu aplicación gratuita para organizarte, inspirarte y aprender.</p>
+    <button onclick="enterApp()">Entrar</button>
+  </div>
+
+  <!-- Contenido principal -->
+  <div id="main" style="display:none;">
+    <header>StudyMate - Tu espacio de estudio</header>
+
+    <nav>
+      <a href="#" onclick="showSection('tareas')">Organizador</a>
+      <a href="#" onclick="showSection('inspo')">Apuntes bonitos</a>
+      <a href="#" onclick="showSection('videos')">Videos educativos</a>
+    </nav>
+
+    <section id="tareas" class="active">
+      <h2>📋 Organizador de tareas</h2>
+      <p>Rellena tus tareas y lleva un control fácil de lo que tienes pendiente.</p>
+      <table>
+        <tr>
+          <th>Tarea</th>
+          <th>Materia</th>
+          <th>Fecha límite</th>
+          <th>Estado</th>
+        </tr>
+        <tr>
+          <td><input type="text" placeholder="Ej: Ensayo de historia"></td>
+          <td><input type="text" placeholder="Historia"></td>
+          <td><input type="date"></td>
+          <td><input type="text" placeholder="Pendiente / Hecho"></td>
+        </tr>
+        <tr>
+          <td><input type="text"></td>
+          <td><input type="text"></td>
+          <td><input type="date"></td>
+          <td><input type="text"></td>
+        </tr>
+      </table>
+    </section>
+
+    <section id="inspo">
+      <h2>🖊️ Consejos para hacer apuntes bonitos</h2>
+      <div class="tips">
+        <p>Hacer apuntes bonitos te ayuda a estudiar con más ganas y a recordar mejor. Algunos consejos:</p>
+        <ul>
+          <li>Usa títulos grandes y coloridos para cada tema.</li>
+          <li>Subraya palabras clave con resaltadores suaves (pastel).</li>
+          <li>Deja márgenes y espacios entre secciones para que se vea limpio.</li>
+          <li>Usa lettering simple o mayúsculas decorativas para los títulos.</li>
+          <li>Agrega dibujos o íconos pequeños para ilustrar ideas.</li>
+          <li>Usa una paleta de 3 colores máximo para mantener armonía.</li>
+        </ul>
+      </div>
+
+      <h3>🎥 Video de inspiración</h3>
+      <div class="yt-links">
+        <a href="https://youtu.be/1e1eDgfTg7A?si=fPPmy5Kbocou28Df" target="_blank">
+          Cómo hacer apuntes bonitos y organizados 🖊️ - Inspiración real
+        </a>
+      </div>
+    </section>
+
+    <section id="videos">
+      <h2>🎥 Videos educativos</h2>
+      <div class="videos">
+        <a href="https://www.youtube.com/watch?v=-RDBMu7BreE" target="_blank">
+          📘 Matemáticas fáciles: aprende con ejemplos claros
+        </a>
+        <a href="https://youtu.be/IHblqjW8RY8?si=4UqkpOOzp8QXyivR" target="_blank">
+          📗 Matemáticas paso a paso para estudiantes
+        </a>
+        <a href="https://youtu.be/5oL2OYIA1ek?si=cU6yVdhxNOLBY8UM" target="_blank">
+          🕒 Cómo organizar tu tiempo y estudiar mejor
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      💡 Aplicación gratuita creada para estudiantes que buscan aprender, organizarse y destacar.
+    </footer>
+  </div>
+
+  <script>
+    function enterApp() {
+      document.getElementById("intro").style.display = "none";
+      document.getElementById("main").style.display = "block";
+    }
+
+    function showSection(id) {
+      document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+    }
+  </script>
+
+</body>
+</html>
